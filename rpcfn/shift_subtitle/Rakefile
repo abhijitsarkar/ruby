@@ -1,0 +1,28 @@
+require 'rubygems'
+require 'rubygems/package_task'
+require 'rake'
+require 'rake/testtask'
+require 'rake/clean'
+
+spec = Gem::Specification.new do |s|
+  s.name = "shift_subtitle"
+  s.summary = "Ruby based subtitle timeshift utility"
+  s.description = "Ruby based subtitle timeshift utility"
+  s.version = "0.0.1"
+  s.authors = ["Abhijit Sarkar"]
+  s.require_path = "lib"
+  s.files = %w(README Rakefile) + Dir.glob("{bin, lib}/**/*")
+  s.executables = ["shift_subtitle"]
+end
+
+Gem::PackageTask.new(spec) do |pkg|
+  pkg.need_zip = true
+end
+
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/test_*.rb'
+  test.verbose = true
+end
+
+task :default => :test

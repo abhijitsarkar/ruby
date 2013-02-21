@@ -1,0 +1,13 @@
+#!~/Applications/rvm/rubies/ruby-1.9.3-p385/bin/ruby
+
+require 'shift_subtitle'
+
+cmd_parser = ShiftSubtitle::CommandLineParser.new
+cmd_parser.parse(ARGV)
+ip_file = cmd_parser.input_file
+op_file = cmd_parser.output_file
+timeshift = cmd_parser.time
+operation = cmd_parser.operation
+
+subtitle_file = ShiftSubtitle::SubtitleFile.new(ip_file, op_file)
+subtitle_file.shift(operation, timeshift)

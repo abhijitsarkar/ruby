@@ -1,6 +1,6 @@
 require 'minitest/autorun'
 require 'optparse'
-require 'shift_subtitle'
+require_relative '../lib/shift_subtitle'
 
 class TestCommandLineParser < MiniTest::Unit::TestCase
   def setup

@@ -1,10 +1,12 @@
 require 'minitest/autorun'
-require 'shift_subtitle'
+
+require_relative '../lib/shift_subtitle'
 
 class TestSubtitleFile < MiniTest::Unit::TestCase
   def setup
-    @subtitle_file = ShiftSubtitle::SubtitleFile.new("/Users/Abhijit/Workspace/eclipse/ruby/rpcfn/shift_subtitle/test/test_subtitle.srt",
-    "/Users/Abhijit/Workspace/eclipse/ruby/rpcfn/shift_subtitle/test/test_subtitle_shifted.srt")
+    # __FILE__ refers to current file
+    @subtitle_file = ShiftSubtitle::SubtitleFile.new(File.join(File.dirname(__FILE__), "fixtures/test_subtitle.srt"),
+    File.join(File.dirname(__FILE__), "fixtures/test_subtitle_shifted.srt"))
   end
 
   def teardown
@@ -13,8 +15,9 @@ class TestSubtitleFile < MiniTest::Unit::TestCase
 
   def test_read_invalid_input_file
     begin
-      ShiftSubtitle::SubtitleFile.new("/Users/Abhijit/Workspace/eclipse/ruby/rpcfn/shift_subtitle/test/junk_subtitle.srt",
-      "/Users/Abhijit/Workspace/eclipse/ruby/rpcfn/shift_subtitle/test/test_subtitle_shifted.srt")
+      # __FILE__ refers to current file
+      ShiftSubtitle::SubtitleFile.new(File.join(File.dirname(__FILE__), "fixtures/test_junk.srt"),
+      File.join(File.dirname(__FILE__), "fixtures/test_subtitle_shifted.srt"))
       refute(true, "Shouldn't have come here, should've failed to open the file")
     rescue Errno::ENOENT => e
       puts "test_read_invalid_input_file [ERROR]: " + e.message

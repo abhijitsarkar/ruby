@@ -1,6 +1,8 @@
 # runs into a deadlock, does not work in it's current version
 require 'thread'
 
+Thread.abort_on_exception = true
+
 class OrangeTree
   GROWTH_PER_YEAR = 1
   AGE_TO_START_PRODUCING_ORANGE = 3
@@ -21,7 +23,7 @@ class OrangeTree
   def one_year_passes
     @age += 1
     @height += GROWTH_PER_YEAR
-    @orange_count = Math.rand(@age..AGE_TO_DIE) * Math.log(@age) * ORANGE_COUNT_RELATIVE_TO_AGE
+    @orange_count = rand(@age..AGE_TO_DIE) * Math.log(@age) * ORANGE_COUNT_RELATIVE_TO_AGE
   end
 
   def pick_an_orange
@@ -55,7 +57,10 @@ class Worker
           puts "Orange picker woke up after sleeping for #{sleep_time}"
           @orange_tree.pick_an_orange
           puts "Orange picker waiting patiently..."
+          # commenting the following condition results in a deadlock
+          #  if @orange_tree.age < OrangeTree::AGE_TO_DIE
           @cv.wait(@mutex)
+          #  end
         end
       end
     end

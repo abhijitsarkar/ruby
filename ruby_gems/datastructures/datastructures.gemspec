@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Ruby based Data Structures like Graph and Priority Queue}
   gem.homepage      = ""
 
-  gem.files         = %w(README Rakefile) + Dir.glob("{lib}/**/*")
+  gem.files         = %w(Rakefile) + Dir.glob("{lib}/**/*")
   gem.executables   = Dir.glob("{bin}/**/*")
   gem.test_files    = Dir.glob("{test}/**/*")
   gem.require_paths = ["lib"]

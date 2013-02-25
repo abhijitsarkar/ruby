@@ -1,5 +1,5 @@
 module DataStructures
-  module Graph
+  module Components
     class Vertex
       attr_reader :location
       attr_accessor :visited, :edges, :distance

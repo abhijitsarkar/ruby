@@ -8,7 +8,7 @@ class TransformerTest < MiniTest::Unit::TestCase
 
     for i in 1..3
       doc_path = File.join(File.dirname(__FILE__), "fixtures/source#{i}.xml")
-      transformed_doc = Transformer.transform(doc_path, xslt_path)
+      transformed_doc = XmlTransformer::Transformer.transform(doc_path, xslt_path)
       # returns a set of Nokogiri::XML::Node
       all_first = transformed_doc.xpath("/people/person/name/first")
       all_last = transformed_doc.xpath("/people/person/name/last")

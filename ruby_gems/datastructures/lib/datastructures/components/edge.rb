@@ -1,5 +1,5 @@
 module DataStructures
-  module Graph
+  module Components
     class Edge
       include Comparable
       attr_reader :location1, :location2, :weight

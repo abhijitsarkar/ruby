@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Ruby based Maze solution}
   gem.homepage      = ""
 
-  gem.files         = %w(README Rakefile) + Dir.glob("{lib}/**/*")
+  gem.files         = %w(README.md Rakefile) + Dir.glob("{lib}/**/*")
   gem.executables   = Dir.glob("{bin}/**/*")
   gem.test_files    = Dir.glob("{test}/**/*")
   gem.require_paths = ["lib"]

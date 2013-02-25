@@ -17,7 +17,7 @@ module DataStructures
     end
 
     def at_location(location)
-      idx = index(DataStructures::Graph::Vertex.new(location, nil))
+      idx = index(DataStructures::Components::Vertex.new(location, nil))
       at(idx) unless idx == nil
     end
 

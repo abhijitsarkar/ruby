@@ -15,31 +15,32 @@ class OrangeTree
     @orange_count = 0
   end
 
-  def count_the_oranges
-    return @orange_count
-  end
-
   def one_year_passes
-    if (@age == AGE_TO_DIE)
-      puts "Sorry, the Orange tree is dead, can't increase the age anymore"
-    else
-      @age += 1
-      @height += GROWTH_PER_YEAR
-      @orange_count = Math.rand(@age..AGE_TO_DIE) * Math.log(@age) * ORANGE_COUNT_RELATIVE_TO_AGE
-      puts "Increased age, height and made some Oranges available for picking"
+      if (@age == AGE_TO_DIE)
+        puts "Sorry, the Orange tree is dead, can't increase the age anymore"
+      elsif (@age >= AGE_TO_START_PRODUCING_ORANGE)
+        @age += 1
+        @height += GROWTH_PER_YEAR
+        @orange_count = (rand(@age..AGE_TO_DIE) * Math.log(@age) * ORANGE_COUNT_RELATIVE_TO_AGE).to_i
+        puts "The age is #{@age}; there are #{@orange_count} Oranges on the tree"
+      else
+        @age += 1
+        @height += GROWTH_PER_YEAR
+        print "The age is #{@age}; sorry, the Orange tree is too young to be producing Oranges\n"
+      end
     end
-  end
-
-  def pick_an_orange
-    if (@age == AGE_TO_DIE)
-      puts "Sorry, the Orange tree is dead, can't pick Oranges anymore"
-    elsif (@orange_count > 0)
-      @orange_count -= 1
-      puts "The Orange is delicious"
-    else
-      puts "Sorry, no Oranges to pick"
+  
+    def pick_an_orange
+      if (@age == AGE_TO_DIE)
+        print "Sorry, the Orange tree is dead, can't pick any more Oranges\n"
+      elsif (@orange_count > 0)
+        puts "The age is #{@age}; there are #{@orange_count} Oranges on the tree"
+        @orange_count -= 1
+        print "The Orange is delicious\n"
+      else
+        print "Sorry, no Oranges to pick\n"
+      end
     end
-  end
 
 end
 

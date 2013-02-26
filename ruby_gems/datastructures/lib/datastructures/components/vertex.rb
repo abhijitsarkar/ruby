@@ -2,13 +2,19 @@ module DataStructures
   module Components
     class Vertex
       attr_reader :location
-      attr_accessor :visited, :edges, :distance
-      def initialize(location, *edges)
+      attr_accessor :value, :distance, :visited, :edges
+      # arguments are substituted from left to right, so if you
+      # want to assign a value for 'distance', you must do so for 'value' too.
+      # Otherwise, the 'value' will get the value sent for distance.
+      # ask them why they didn't support overloading.
+      def initialize(location, value = Float::INFINITY, 
+          distance = Float::INFINITY, visited = false, *edges)
         super() # invocation w/o param actually send all the params passed to initialize! go, figure.
 
         @location = location
-        @visited = false
-        @distance = Float::INFINITY
+        @value = value
+        @visited = visited
+        @distance = distance
         @edges = (edges != nil ? edges.compact : []) # remove nil elements from the array
         @edges.each { |edge|
           raise ArgumentError.new(

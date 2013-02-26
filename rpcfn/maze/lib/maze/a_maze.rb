@@ -15,7 +15,7 @@ module Maze
       vertices_array.map.each_with_index { |line, row|
         line.each_char.each_with_index { |char, col|
           if (node?(char))
-            @vertices << DataStructures::Components::Vertex.new([row, col], *edges(row, col, vertices_array))
+            @vertices << DataStructures::Components::Vertex.new([row, col], Float::INFINITY, Float::INFINITY, false, *edges(row, col, vertices_array))
           end
         }
       }
